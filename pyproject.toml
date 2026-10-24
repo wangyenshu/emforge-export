@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "emforge-export"
+dynamic = ["version"]
+description = "Export emscripten-forge recipes to a self-contained build.sh (no conda / prefix.dev)"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = ["PyYAML", "Jinja2"]
+license = {text = "BSD-3-Clause"}
+
+[project.scripts]
+ef-export = "ef_export.cli:main"
+
+[tool.setuptools]
+packages = ["ef_export"]
+
+[tool.setuptools.package-data]
+ef_export = ["runtime/engine.sh", "runtime/helper.py"]
+
+[tool.setuptools.dynamic]
+version = {attr = "ef_export.__version__"}
